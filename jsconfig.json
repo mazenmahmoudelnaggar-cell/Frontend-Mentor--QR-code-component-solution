@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["index.html", "src/**/*", "src/auto-webp.js", "postcss.config.cjs", "server.js", "vite.config.js"]
+}
