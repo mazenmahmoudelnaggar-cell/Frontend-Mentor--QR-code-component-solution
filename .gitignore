@@ -1,0 +1,14 @@
+# Node modules (don't share large dependencies)
+node_modules/
+
+# OS / IDE files
+.DS_Store
+.vscode/
+
+# Optional dev-only files you don't need publicly
+/dist/
+*.log
+/README-cloudshell.txt
+
+# Ignore environment variables if you ever add them
+.env

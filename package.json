@@ -1,0 +1,30 @@
+{
+  "name": "simple_app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "watch:webp": "node src/auto-webp.js",
+    "vite:dev": "vite --port 8000 --host",
+    "server": "node server.js",
+    "dev": "npm-run-all --parallel watch:webp vite:dev server",
+    "build": "node src/auto-webp.js && vite build",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "chokidar": "^4.0.3",
+    "chokidar-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.6",
+    "postcss-safe-parser": "^7.0.1",
+    "sharp": "^0.34.4",
+    "vite": "^5.4.20"
+  },
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "express": "^5.1.0",
+    "livereload": "^0.10.3",
+    "postcss-cli": "^11.0.1",
+    "ws": "^8.18.3"
+  }
+}
