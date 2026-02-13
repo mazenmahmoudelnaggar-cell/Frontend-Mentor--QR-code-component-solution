@@ -1,0 +1,38 @@
+.
+├── cloudshell_setup.sh
+├── .gitignore
+├── images
+│   ├── favicon-32x32.png
+│   └── image-qr-code.png
+├── index.html
+├── jsconfig.json
+├── netlify
+│   └── functions
+│       └── health.js
+├── netlify.toml
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── project-tree.txt
+├── public
+│   └── webp_images
+│       ├── favicon-32x32.webp
+│       └── image-qr-code.webp
+├── README-cloudshell.txt
+├── screenshots
+│   ├── Screenshot (desktop-design).png
+│   └── Screenshot (mobile-design).png
+├── server.js
+├── src
+│   ├── auto-webp.js
+│   └── main.js
+├── .stylelintrc.json
+├── styles
+│   └── style.css
+├── .vercel
+│   ├── cache
+│   ├── project.json
+│   └── README.txt
+└── vite.config.js
+
+11 directories, 25 files

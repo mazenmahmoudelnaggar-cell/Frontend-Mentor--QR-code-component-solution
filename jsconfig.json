@@ -5,5 +5,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["index.html", "src/**/*", "src/auto-webp.js", "postcss.config.cjs", "server.js", "vite.config.js"]
+  "include": ["index.html", "src/**/*", "src/auto-webp.js", "postcss.config.js", "server.js", "vite.config.js"]
 }

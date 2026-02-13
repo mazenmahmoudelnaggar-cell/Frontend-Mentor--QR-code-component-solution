@@ -5,7 +5,7 @@ import chokidar from "chokidar";
 
 // Input/output directories
 const inputDir = "./images";
-const outputDir = "./webp_images";
+const outputDir = "./public/webp_images";
 
 // Ensure output directory exists
 if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });

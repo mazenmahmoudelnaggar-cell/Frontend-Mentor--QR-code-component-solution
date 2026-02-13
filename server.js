@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import livereload from "livereload";
-import connectLivereload from "connect-livereload";
+import connectLiveReload from "connect-livereload";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,20 +10,39 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// ---------- LiveReload ----------
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, "public"));
-liveReloadServer.watch(path.join(__dirname, "src"));
+app.use(express.json());
 
-app.use(connectLivereload());
+// ---------------- API ROUTES ----------------
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 
-// ---------- Serve static folders ----------
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/src", express.static(path.join(__dirname, "src"), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith(".js")) res.setHeader("Content-Type", "text/javascript");
-  }
-}));
+// ---------------- STATIC ASSETS ----------------
+const isProduction = process.env.NODE_ENV === "production";
+const staticDir = isProduction ? path.join(__dirname, "dist") : __dirname;
 
-// ---------- Start server ----------
+// WebP images
+app.use("/webp_images", express.static(path.join(__dirname, "webp_images")));
+
+// Serve built frontend in production
+app.use(express.static(staticDir));
+
+// SPA fallback for Vite-built frontend
+app.get("*", (req, res) => {
+  res.sendFile(path.join(staticDir, "index.html"));
+});
+
+// ---------------- LIVE RELOAD (DEV ONLY) ----------------
+if (!isProduction) {
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.watch(staticDir);
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  });
+  app.use(connectLiveReload());
+}
+
+// ---------------- START SERVER ----------------
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));

@@ -4,27 +4,35 @@
   "type": "module",
   "scripts": {
     "watch:webp": "node src/auto-webp.js",
-    "vite:dev": "vite --port 8000 --host",
     "server": "node server.js",
-    "dev": "npm-run-all --parallel watch:webp vite:dev server",
+    "vite": "vite --port 8000 --host --strictPort",
+    "dev": "npm-run-all --parallel server watch:webp vite",
     "build": "node src/auto-webp.js && vite build",
-    "start": "npm run dev"
+    "preview": "npm run build && node server.js",
+    "start": "node server.js",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:css:watch": "stylelint \"**/*.css\" --watch",
+    "dev:netlify": "npx netlify dev",
+    "deploy:prod": "npm run build && git add . && git commit -m '🚀 latest update' && git push origin main && npx netlify deploy --prod --dir=dist && npx open https://simple_app.netlify.app"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "chokidar": "^4.0.3",
-    "chokidar-cli": "^3.0.0",
+    "autoprefixer": "^10.4.19",
+    "chokidar": "^3.6.0",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3",
+    "netlify": "^23.15.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.5.6",
-    "postcss-safe-parser": "^7.0.1",
-    "sharp": "^0.34.4",
-    "vite": "^5.4.20"
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "sharp": "^0.33.4",
+    "stylelint": "^16.5.0",
+    "stylelint-config-standard": "^36.0.0",
+    "vercel": "^50.13.2",
+    "vite": "^5.2.11",
+    "vite-plugin-stylelint": "^5.3.1"
   },
   "dependencies": {
-    "connect-livereload": "^0.6.1",
-    "express": "^5.1.0",
-    "livereload": "^0.10.3",
-    "postcss-cli": "^11.0.1",
-    "ws": "^8.18.3"
+    "express": "^4.19.2",
+    "ws": "^8.17.0"
   }
 }

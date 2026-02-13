@@ -12,3 +12,16 @@ node_modules/
 
 # Ignore environment variables if you ever add them
 .env
+.vercel
+
+# Local Netlify folder
+.netlify
+
+# OS swap/temporary files
+*.swp
+*.swo
+
+# OS swap/temporary files
+*.tmp
+*.cache/
+

@@ -1,14 +1,20 @@
+
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.',
   server: {
     port: 8000,
-    host: "0.0.0.0",
-    open: true,
+    host: true,
     strictPort: true,
-    hmr: { overlay: false }
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
-  build: { outDir: 'dist' },
-  css: { devSourcemap: false }
+  build: {
+    outDir: 'dist'
+  }
 });
