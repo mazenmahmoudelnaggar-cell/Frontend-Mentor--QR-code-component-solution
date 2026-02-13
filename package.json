@@ -13,7 +13,8 @@
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css:watch": "stylelint \"**/*.css\" --watch",
     "dev:netlify": "npx netlify dev",
-    "deploy:prod": "npm run build && git add . && git commit -m '🚀 latest update' && git push origin main && npx netlify deploy --prod --dir=dist && npx open https://simple_app.netlify.app"
+    "deploy:prod": "npm run build && git add . && git commit -m '🚀 latest update' || echo 'No changes to commit' && git pull --rebase origin main && git push origin main && npx netlify deploy --prod --dir=dist && npx open https://simple_app.netlify.app"
+
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
